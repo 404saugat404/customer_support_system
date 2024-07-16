@@ -1,0 +1,4 @@
+speechrecognition==3.8.1
+gtts==2.2.3
+requests==2.28.1
+gemini 
