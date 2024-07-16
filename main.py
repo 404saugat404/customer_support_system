@@ -11,18 +11,26 @@ def main():
     response_generator = GeminiResponseGenerator()
 
     # Simulate input handling
-    input_type = input("Enter input type (text/audio): ")
+    input_type = input("Enter input type (text/audio): ").strip().lower()
+    print(f"Received input type: '{input_type}'")  # Debugging statement
+
+    if input_type not in ["text", "audio"]:
+        print("Invalid input type. Please enter 'text' or 'audio'.")
+        return
+
     if input_type == "text":
         user_input = get_text_input()
     elif input_type == "audio":
-        user_input = audio_to_text("path_to_audio_file.wav")
-    else:
-        print("Invalid input type")
-        return
+        audio_file_path = input("Enter the path to the audio file: ").strip()
+        user_input = audio_to_text(audio_file_path)
+
+    # Print the user input for debugging
+    print(f"User input: '{user_input}'")
 
     # Intent classification
     try:
         intent = classify_intent(user_input)
+        print(f"Classified intent: '{intent}'")  # Debugging statement
     except Exception as e:
         print(handle_error(e))
         return
@@ -40,6 +48,9 @@ def main():
             response_text = handle_error(e)
     else:
         response_text = response_generator.generate_response(user_input)
+
+    # Print response for debugging
+    print(f"Response text: '{response_text}'")
 
     # Generate response in the same modality as the input
     if input_type == "text":
