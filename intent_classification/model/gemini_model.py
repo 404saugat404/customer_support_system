@@ -6,7 +6,7 @@ genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
 class GeminiModel:
     def __init__(self):
-        self.model_name = "gemini-1.5-pro"
+        self.model_name = "gemini-1.5-flash"
 
     def classify_intent(self, text):
         response = genai.generate_content(self.model_name, prompt=text)
