@@ -1,12 +1,16 @@
-from gemini import Gemini
+import google.generativeai as genai
+import os
+
+# Configure the Gemini API with your API key
+genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
 class GeminiResponseGenerator:
     def __init__(self):
-        self.model = Gemini.load_pretrained('gemini-base-response')
+        self.model_name = "gemini-1.5-pro"
 
     def generate_response(self, prompt):
-        response = self.model.generate(prompt)
-        return response
+        response = genai.generate_content(self.model_name, prompt=prompt)
+        return response.text
 
 # Example usage
 if __name__ == "__main__":
