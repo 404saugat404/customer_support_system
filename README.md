@@ -17,3 +17,7 @@ Install the required Python libraries:
 
 ```bash
 pip install -r requirements.txt
+
+
+Set the Google API key as an environment variable:
+export GOOGLE_API_KEY=your_api_key
